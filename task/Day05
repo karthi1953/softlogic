@@ -1,0 +1,152 @@
+
+### 1. What is React, and why is it called a library instead of a framework?
+
+React is a JavaScript library used to build user interfaces, especially for single-page applications.
+
+It is called a library because it mainly focuses on building the UI, whereas a framework provides a complete structure for developing an application.
+
+Main concepts:
+
+- Component-based architecture: Divides the UI into small, reusable components.
+- Declarative UI: We describe how the UI should look, and React updates it automatically.
+- Problems solved: Reduces code repetition, makes UI management easier and improves maintainability.
+
+### 2. What is JSX, and how does the browser execute it?
+
+JSX stands for JavaScript XML. It allows us to write HTML-like syntax inside JavaScript.
+
+Browsers cannot directly understand JSX, so tools like Babel transform JSX into normal JavaScript using functions like `React.createElement` (or the modern JSX runtime).
+
+Main concepts:
+
+- JSX transformation: Converts JSX into JavaScript.
+- JavaScript expressions: We can use variables and expressions inside `{}`.
+- JSX vs HTML: JSX uses `className` instead of `class`, `htmlFor` instead of `for`, and follows JavaScript naming conventions.
+
+### 3. Difference between Real DOM and Virtual DOM
+
+The Real DOM is the actual document structure displayed by the browser. The Virtual DOM is a lightweight JavaScript representation of the UI.
+
+Main concepts:
+
+- Rendering: React calculates what the UI should look like.
+- Reconciliation: React compares the previous and new UI trees.
+- DOM updates: React updates only the necessary DOM elements instead of rebuilding the entire page.
+
+### 4. What causes a React component to render or re-render?
+
+A component renders when React needs to calculate its UI.
+
+Main reasons:
+
+- State changes.
+- New props are received.
+- Parent component re-renders.
+- Context value changes.
+
+Re-rendering does not always mean the actual DOM will change. React compares the output and updates the DOM only when necessary.
+
+### 5. What are props and state, and how are they different?
+
+Props are data passed from a parent component to a child component.
+
+State is data managed inside a component that can change over time.
+
+Main concepts:
+
+- One-way data flow: Data generally flows from parent to child.
+- Immutability: We should create new objects or arrays instead of directly modifying existing data.
+- Lifting state up: Moving shared state to a common parent component.
+- Direct modification: Mutating state directly may not trigger proper re-rendering and can cause unexpected behaviour.
+
+### 6. How does useState() work?
+
+`useState()` is a React Hook used to manage state inside functional components.
+
+Example: `const [count, setCount] = useState(0);`
+
+Main concepts:
+
+- State snapshots: Each render gets its own state value.
+- Batching: React groups multiple state updates to reduce unnecessary rendering.
+- Functional updates: We can use `setCount(prev => prev + 1)` when the next value depends on the previous value.
+- Previous value: Reading state immediately after calling its setter may return the old value because the update happens in the next render.
+
+### 7. How does useEffect() work, and when should it be used?
+
+`useEffect()` is a Hook used to handle side effects such as API calls, timers, subscriptions and event listeners.
+
+Main concepts:
+
+- No dependency array: Runs after every commit.
+- Empty array `[]`: Runs after the initial mount.
+- With dependencies: Runs when the specified dependencies change.
+- Cleanup function: Used to clear timers, remove listeners and cancel subscriptions.
+- Stale closures: Occur when an effect uses outdated values from an earlier render.
+- Strict Mode: In development, React performs an additional setup and cleanup cycle to check whether effects are working correctly.
+
+### 8. What are controlled and uncontrolled components in React?
+
+These are two approaches to handling form inputs.
+
+- Controlled components: Input values are managed using React state and updated through `onChange`.
+- Uncontrolled components: Input values are managed by the DOM itself and accessed using `useRef()`.
+
+Main concepts:
+
+- Form handling: Collecting and managing user input.
+- Validation: Checking whether entered values are correct.
+- useRef(): Helps access DOM elements directly without causing re-renders.
+
+Controlled components are useful for real-time validation, while uncontrolled components are useful for simple forms.
+
+### 9. How does React render lists and conditional content?
+
+React uses JavaScript methods and conditions to display dynamic content.
+
+Main concepts:
+
+- map(): Used to display lists of elements.
+- Keys: Unique and stable identifiers that help React identify list items.
+- Array index keys: Can cause problems when items are added, removed or reordered.
+- Conditional rendering: Uses `if`, ternary operators or `&&` to display content based on conditions.
+
+JSX behaviour:
+
+- Strings and numbers are displayed.
+- `true`, `false`, `null` and `undefined` are not displayed.
+- `null` and `undefined` are commonly used when we don't want to render anything.
+
+### 10. How does client-side routing work in React Router?
+
+React Router allows navigation between different pages or components without reloading the entire browser page.
+
+Main concepts:
+
+- BrowserRouter: Enables browser-based routing.
+- Routes: Groups route definitions.
+- Route: Maps a URL path to a component.
+- Link: Navigates between pages without a full reload.
+- NavLink: Similar to Link but also provides an active state.
+- Nested routes: Allow pages to have child routes.
+- Outlet: Displays the matching child route inside a parent component.
+
+Unlike traditional navigation, client-side routing updates the displayed content without requesting a completely new HTML page.
+
+### 11. Difference between useNavigate(), useParams(), useLocation() and useSearchParams()
+
+These are React Router Hooks used to access and manage navigation information.
+
+- useNavigate(): Used to navigate programmatically between pages.
+- useParams(): Retrieves dynamic URL parameters, such as `/users/10`.
+- useLocation(): Provides information about the current URL and navigation state.
+- useSearchParams(): Reads and updates query parameters, such as `?search=react`.
+
+Additional concepts:
+
+- Browser history: Maintains the user's navigation history.
+- replace: true: Replaces the current history entry instead of adding a new one.
+- Dynamic parameters: Used to identify specific resources through URL paths.
+- Query parameters: Used to pass filtering, searching and sorting information.
+- Navigation state: Allows passing temporary data between pages without putting it in the URL.
+
